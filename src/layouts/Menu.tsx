@@ -21,9 +21,11 @@ export const Menu = () => {
         display: 'flex',
         flexDirection: 'column',
         gap: '20px',
-        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
         padding: '20px',
         justifyContent: 'center',
+        borderRight: '1px solid rgba(255, 255, 255)',
+        borderColor: 'rgba(20,20,20)',
       }}
     >
       <List>
@@ -56,7 +58,7 @@ export const Menu = () => {
                         width: '100%',
                       }
                     : {
-                        color: '#26aa98',
+                        color: 'rgb(26, 118, 106)',
                         textDecoration: 'none',
                       }
                 }

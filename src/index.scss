@@ -1,6 +1,9 @@
-
 * {
   box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+  display: none;
 }
 
 :root {
@@ -15,11 +18,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  
 }
 
 body {
-
   height: 100vh;
   // width: 100%;
   padding: 0;

@@ -22,11 +22,14 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Grid container sx={{ height: '100%', width: '100%' }}>
-        <Grid item xs={4} md={3} lg={2}>
+      <Grid
+        container
+        sx={{ height: '100vh', width: '100%', overflow: 'hidden' }}
+      >
+        <Grid sx={{ height: '100%' }} item xs={4} md={3} lg={2}>
           <Menu />
         </Grid>
-        <Grid item xs={8} md={9} lg={10}>
+        <Grid item xs={8} md={9} lg={10} sx={{ overflow: 'scroll' }}>
           <AppRoutes />
         </Grid>
         <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />

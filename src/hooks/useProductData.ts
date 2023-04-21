@@ -1,11 +1,10 @@
-import { useMutation } from 'react-query';
 import { useQuery } from 'react-query';
 import axiosInstance from '../utils/axios.utils';
 
 const fetchProductData = () => {
-  return axiosInstance.get('users');
+  return axiosInstance.get('products');
 };
 
-export const useProducData = (onSuccess, onError) => {
-  return useQuery('product', fetchProductData, { onSuccess, onError });
+export const useProductData = (onSuccess, onError) => {
+  return useQuery('products', fetchProductData, { onSuccess, onError });
 };
