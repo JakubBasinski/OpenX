@@ -8,7 +8,7 @@ import styles from './menu.module.scss';
 import StyledNavLink from './StyledNavLink';
 import { red } from '@mui/material/colors';
 
-const menuList = ['Data', 'Products', 'Cart', 'Users'];
+const menuList = ['Data', 'Categories', 'Cart', 'Users'];
 
 // font-family: 'Roboto Condensed', sans-serif;
 

@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import { Grid, Typography } from '@mui/material';
-import UserCard from '../../components/UserCard';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import { capFirstLetter } from '../../utils/functions';
-import { useUserData } from '../../hooks/useUserData';
 import { CustomSelect } from './components/CustomSelect';
 import { IsLoading } from './components/IsLoading';
-import { UserList } from './components/UserList';
 import { IsError } from './components/isError';
-import { useProductData } from '../../hooks/useProductData';
-import { ProductList } from './components/ProductList';
-import { ProductCard } from '../../components/ProductCard';
 
+import { UserCard } from '../../components/UserCard';
+import { ProductCard } from '../../components/ProductCard';
+import { CartCard } from '../../components/CartCard';
+
+import { CartList } from './components/CartList';
+import { ProductList } from './components/ProductList';
+import { UserList } from './components/UserList';
+
+import { useProductData } from '../../hooks/useProductData';
+import { useUserData } from '../../hooks/useUserData';
+import { useCartData } from '../../hooks/useCardsData';
 
 export const Data = () => {
   const [dataType, setDataType] = useState<string | number>('Users');
@@ -42,24 +47,38 @@ export const Data = () => {
     isError: isProductError,
   } = useProductData();
 
+  const {
+    isLoading: isCartLoading,
+    data: cartData,
+    isError: isCartError,
+  } = useCartData();
+
   const users = userData?.data;
   const products = productData?.data;
 
-  console.log('products', products);
+  const carts = cartData?.data;
+
+  // console.log('carts', carts);
+
   const [activeUser, setActiveUser] = useState(
     users && users.length > 0 ? users[0] : null
   );
   const [activeProduct, setActiveProducts] = useState(
     products && products.length > 0 ? products[0] : null
   );
+  const [activeCart, setActiveCart] = useState(
+    carts && carts.length > 0 ? carts[0] : null
+  );
 
-  if (isUserLoading || isProductLoading) {
+  if (isUserLoading || isProductLoading || isCartLoading) {
     return <IsLoading />;
   }
 
-  if (isUserError || isProductError) {
+  if (isUserError || isProductError || isCartError) {
     return <IsError />;
   }
+
+  console.log('activeCart', activeCart);
 
   return (
     <Box
@@ -101,7 +120,7 @@ export const Data = () => {
             display: 'flex',
             justifyContent: 'center',
             height: '100%',
-            padding: '10px'
+            padding: '10px',
           }}
           xs={4}
         >
@@ -120,10 +139,19 @@ export const Data = () => {
               setActiveProducts={setActiveProducts}
             />
           )}
+
+          {dataType === 'Carts' && (
+            <CartList
+              carts={carts}
+              activeCart={activeCart}
+              setActiveCart={setActiveCart}
+            />
+          )}
         </Grid>
         <Grid item xs={8}>
           {dataType === 'Users' && <UserCard user={activeUser} />}
           {dataType === 'Products' && <ProductCard product={activeProduct} />}
+          {dataType === 'Carts' && <CartCard cart={activeCart} />}
         </Grid>
       </Grid>
     </Box>

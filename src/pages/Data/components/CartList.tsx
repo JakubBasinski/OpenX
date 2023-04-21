@@ -7,18 +7,18 @@ import ReactPaginate from 'react-paginate';
 import { useState } from 'react';
 import styles from '../data.module.scss';
 
-export const ProductList = ({ products, activeProduct, setActiveProducts }) => {
+export const CartList = ({ carts, activeCart, setActiveCart }) => {
   const [pageNumber, setPageNumber] = useState(0);
-  const prodctsPerPage = 8;
-  const pagesVisited = pageNumber * prodctsPerPage;
-  const pageCount = Math.ceil(products.length / prodctsPerPage);
+  const cartsPerPage = 8;
+  const pagesVisited = pageNumber * cartsPerPage;
+  const pageCount = Math.ceil(carts.length / cartsPerPage);
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
 
-  const displayProducts = products
-    ?.slice(pagesVisited, pagesVisited + prodctsPerPage)
-    .map((product, i) => (
+  const displayProducts = carts
+    ?.slice(pagesVisited, pagesVisited + cartsPerPage)
+    .map((cart, i) => (
       <ListItem
         key={i}
         sx={{
@@ -29,13 +29,11 @@ export const ProductList = ({ products, activeProduct, setActiveProducts }) => {
         <Typography
           sx={{
             color:
-              activeProduct?.id === product?.id
-                ? 'primary.dark'
-                : 'secondary.dark',
+              activeCart?.id === cart?.id ? 'primary.dark' : 'secondary.dark',
             fontSize: '1.3rem',
             textAlign: 'start',
             backgroundColor:
-              activeProduct?.id === product?.id
+              activeCart?.id === cart?.id
                 ? 'secondary.dark'
                 : 'rgba(0, 0, 0, 0.9)',
             backdropFilter: blur('2px'),
@@ -50,9 +48,9 @@ export const ProductList = ({ products, activeProduct, setActiveProducts }) => {
               color: 'primary.dark',
             },
           }}
-          onClick={() => setActiveProducts(product)}
+          onClick={() => setActiveCart(cart)}
         >
-          {product.id}. {shorthenString(product.title, 3)}
+          Cart {cart.id}
         </Typography>
       </ListItem>
     ));
@@ -65,7 +63,6 @@ export const ProductList = ({ products, activeProduct, setActiveProducts }) => {
         gap: '10px',
       }}
     >
-
       {pageCount < 2 ? null : (
         <ReactPaginate
           previousLabel={'Previous'}
@@ -77,6 +74,7 @@ export const ProductList = ({ products, activeProduct, setActiveProducts }) => {
           activeClassName={styles.paginationActive}
         />
       )}
+
       {displayProducts}
     </List>
   );

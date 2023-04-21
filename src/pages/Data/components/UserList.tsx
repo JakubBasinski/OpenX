@@ -63,15 +63,17 @@ export const UserList = ({ users, activeUser, setActiveUser }) => {
         gap: '10px',
       }}
     >
-      <ReactPaginate
-        previousLabel={'Previous'}
-        nextLabel={'Next'}
-        pageCount={pageCount}
-        onPageChange={changePage}
-        containerClassName={styles.paginationBttns}
-        disabledClassName={styles.paginationDisabled}
-        activeClassName={styles.paginationActive}
-      />
+      {pageCount < 2 ? null : (
+        <ReactPaginate
+          previousLabel={'Previous'}
+          nextLabel={'Next'}
+          pageCount={pageCount}
+          onPageChange={changePage}
+          containerClassName={styles.paginationBttns}
+          disabledClassName={styles.paginationDisabled}
+          activeClassName={styles.paginationActive}
+        />
+      )}
       {displayesUsers}
     </List>
   );

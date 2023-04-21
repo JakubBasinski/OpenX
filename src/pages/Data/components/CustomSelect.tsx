@@ -92,9 +92,9 @@ export const CustomSelect = ({
               color: 'primary.dark',
               '&:hover': { color: 'secondary.main' },
             }}
-            value={'Dates'}
+            value={'Carts'}
           >
-            Dates
+            Carts
           </MenuItem>
         </Select>
       </FormControl>

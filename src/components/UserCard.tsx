@@ -2,7 +2,7 @@ import React from 'react';
 import { capFirstLetter } from '../utils/functions';
 import { Box, Typography } from '@mui/material';
 
-const UserCard = ({ user }) => {
+export const UserCard = ({ user }) => {
   return (
     <Box
       sx={{
@@ -170,4 +170,3 @@ const UserCard = ({ user }) => {
   );
 };
 
-export default UserCard;
