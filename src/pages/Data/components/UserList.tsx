@@ -32,15 +32,13 @@ export const UserList = ({ users, activeUser, setActiveUser }) => {
             fontSize: '1.3rem',
             textAlign: 'start',
             backgroundColor:
-              activeUser?.id === user?.id
-                ? 'secondary.dark'
-                : 'rgba(0, 0, 0, 0.9)',
-            backdropFilter: blur('2px'),
+              activeUser?.id === user?.id ? 'secondary.dark' : 'transparent',
             width: '100%',
             padding: '10px 30px',
             margin: 0,
+            border: '1px solid',
+            borderColor: 'secondary.dark',
             borderRadius: '5px',
-
             cursor: 'pointer',
             '&:hover': {
               color: 'primary.dark',
@@ -59,10 +57,7 @@ export const UserList = ({ users, activeUser, setActiveUser }) => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        border: 'solid red 1px',
         gap: '10px',
-        width: '100%',
-        height: '100%',
       }}
     >
       <Box>

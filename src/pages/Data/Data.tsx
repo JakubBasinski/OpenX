@@ -15,7 +15,7 @@ import { UserList } from './components/UserList';
 
 import { useProductData } from '../../hooks/useProductData';
 import { useUserData } from '../../hooks/useUserData';
-import { useCartData } from '../../hooks/useCardsData';
+import { useCartData } from '../../hooks/useCartsData';
 
 export const Data = () => {
   const [dataType, setDataType] = useState<string | number>('Users');
@@ -55,8 +55,6 @@ export const Data = () => {
 
   const carts = cartData?.data;
 
-  // console.log('carts', carts);
-
   const [activeUser, setActiveUser] = useState(
     users && users.length > 0 ? users[0] : null
   );
@@ -83,7 +81,7 @@ export const Data = () => {
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        backgroundColor: 'rgba(0, 0, 0, 0.9)',
       }}
     >
       <Grid
@@ -117,10 +115,8 @@ export const Data = () => {
             display: 'flex',
             justifyContent: 'center',
             height: '100%',
-            // border: '1px solid red',
-            // padding: '10px',
           }}
-          xs={4}
+          xs={3}
         >
           {dataType === 'Users' && (
             <UserList
@@ -146,7 +142,15 @@ export const Data = () => {
             />
           )}
         </Grid>
-        <Grid item xs={8}>
+        <Grid
+          sx={{
+            display: 'flex',
+            alignItems: 'start',
+            justifyContent: 'start',
+          }}
+          item
+          xs={9}
+        >
           {dataType === 'Users' && <UserCard user={activeUser} />}
           {dataType === 'Products' && <ProductCard product={activeProduct} />}
           {dataType === 'Carts' && <CartCard cart={activeCart} />}

@@ -8,10 +8,12 @@ export const ProductCard = ({ product }) => {
       sx={{
         display: 'flex',
         width: '90%',
-        padding: '30px ',
-        backgroundColor: 'rgba(0, 0, 0, 0.9)',
-        backdropFilter: blur('2px'),
+        padding: '50px ',
+        border: '1px solid',
+        borderColor: 'primary.dark',
         gap: '50px',
+        borderRadius: '5px',
+        marginTop: '30px',
       }}
     >
       {product ? (

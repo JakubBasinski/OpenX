@@ -37,13 +37,15 @@ export const ProductList = ({ products, activeProduct, setActiveProducts }) => {
             backgroundColor:
               activeProduct?.id === product?.id
                 ? 'secondary.dark'
-                : 'rgba(0, 0, 0, 0.9)',
+                : 'transparent',
             backdropFilter: blur('2px'),
             width: '100%',
             padding: '10px 30px',
             margin: 0,
+            border: '1px solid',
+            borderColor: 'secondary.dark',
             borderRadius: '5px',
-       
+
             cursor: 'pointer',
             '&:hover': {
               color: 'primary.dark',
@@ -64,7 +66,6 @@ export const ProductList = ({ products, activeProduct, setActiveProducts }) => {
         gap: '10px',
       }}
     >
-
       {pageCount < 2 ? null : (
         <ReactPaginate
           previousLabel={'Previous'}

@@ -10,8 +10,9 @@ export const CartCard = ({ cart }) => {
         flexDirection: 'column',
         width: '300px',
         padding: '30px ',
-        backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        backdropFilter: blur('2px'),
+        border: '1px solid',
+        borderColor: 'primary.dark',
+        borderRadius: '5px',
         gap: '15px',
       }}
     >

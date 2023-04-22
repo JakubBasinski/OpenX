@@ -123,7 +123,7 @@ export const Distance = () => {
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        backgroundColor: 'rgba(0, 0, 0, 0.95)',
         justifyContent: 'center',
         alignItems: 'center',
       }}
@@ -131,7 +131,6 @@ export const Distance = () => {
       <Box sx={{ height: '25vh', display: 'flex' }}>
         <Box
           sx={{
-            backgroundColor: 'rgba(0, 0, 0, 0.9)',
             backdropFilter: 'blur(2px)',
             padding: '30px 60px',
             display: 'flex',
@@ -191,17 +190,17 @@ export const Distance = () => {
               display: 'flex',
               flexDirection: 'column',
               borderRadius: '5px',
-              gap: ' 15px',
+              gap: ' 30px',
               margin: 'auto',
               justifyContent: 'center',
             }}
           >
             <Typography
               sx={{
-                backgroundColor: 'rgba(0, 0, 0, 0.95)',
-                padding: '20px 40px',
                 color: 'primary.dark',
                 fontSize: '1.2rem',
+
+                textAlign: 'start',
               }}
               variant={'h5'}
             >
@@ -213,6 +212,8 @@ export const Distance = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'start',
+                alignItems: 'start',
+                gap: '15px',
               }}
             >
               <CustomMapSelect
@@ -241,9 +242,10 @@ export const Distance = () => {
                   display: 'flex',
                   flexDirection: 'column',
                   width: '300px',
-                  padding: '30px ',
-                  backgroundColor: 'rgba(0, 0, 0, 0.95)',
+
                   backdropFilter: blur('2px'),
+                  borderRadius: '5px',
+
                   gap: '15px',
                 }}
               >
@@ -302,7 +304,6 @@ export const Distance = () => {
         <Box
           sx={{
             width: '50%',
-            backgroundColor: 'rgba(0, 0, 0, 0.7)',
             borderRadius: '5px',
             marginBottom: '20px',
           }}

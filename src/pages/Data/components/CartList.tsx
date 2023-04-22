@@ -33,13 +33,12 @@ export const CartList = ({ carts, activeCart, setActiveCart }) => {
             fontSize: '1.3rem',
             textAlign: 'start',
             backgroundColor:
-              activeCart?.id === cart?.id
-                ? 'secondary.dark'
-                : 'rgba(0, 0, 0, 0.9)',
-            backdropFilter: blur('2px'),
+              activeCart?.id === cart?.id ? 'secondary.dark' : 'transparent',
             width: '100%',
             padding: '10px 30px',
             margin: 0,
+            border: '1px solid',
+            borderColor: 'secondary.dark',
             borderRadius: '5px',
             transition:
               'color 0.3s ease-in-out, background-color 0.5s ease-in-out',

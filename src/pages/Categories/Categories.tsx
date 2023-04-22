@@ -9,13 +9,17 @@ import { IsError } from '../Data/components/isError';
 
 
 export const Categories = () => {
-  const { data: productData, isLoading, isError } = useProductData();
+  const {
+    data: productData,
+    isLoading: isProductLoading,
+    isError: isProductError,
+  } = useProductData();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [table, setTable] = useState(null);
 
   useEffect(() => {
-    if (productData?.data) {
+    if (productData) {
       setProducts(productData.data);
     }
   }, [productData]);
@@ -24,7 +28,6 @@ export const Categories = () => {
     if (products.length > 0) {
       const uniqueCategories = getUniqueCategories(products);
       setCategories(uniqueCategories);
-
       const newTable = new CustomHashTable(uniqueCategories.length);
       products.forEach((product) => {
         if (product.category && uniqueCategories.includes(product.category)) {
@@ -32,16 +35,15 @@ export const Categories = () => {
           newTable.set(product.category, currentCount + 1);
         }
       });
-
       setTable(newTable);
     }
   }, [products]);
 
-  if (isLoading) {
+  if (isProductLoading) {
     return <IsLoading />;
   }
 
-  if (isError) {
+  if (isProductError) {
     return <IsError />;
   }
 

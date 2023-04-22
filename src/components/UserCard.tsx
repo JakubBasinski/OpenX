@@ -11,9 +11,13 @@ export const UserCard = ({ user }) => {
         width: '300px',
         // minHeight: '480px',
         padding: '30px ',
-        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        // backgroundColor: 'rgba(0, 0, 0, 0.7)',
         backdropFilter: blur('2px'),
+        marginTop: '30px',
         gap: '15px',
+        border: '1px solid',
+        borderRadius: '5px',
+        color: 'primary.dark',
       }}
     >
       {user ? (
@@ -169,4 +173,3 @@ export const UserCard = ({ user }) => {
     </Box>
   );
 };
-

@@ -12,7 +12,7 @@ export const CustomMapSelect = ({
   handleOpenCustom,
   handleCloseCustom,
   users,
-  index
+  index,
 }) => {
   return (
     <Box
@@ -20,13 +20,18 @@ export const CustomMapSelect = ({
         height: '100%',
         width: '100%',
         display: 'flex',
-        justifyContent: 'start',
         alignItems: 'start',
+        justifyContent: 'start',
       }}
     >
       <FormControl
         sx={{
           m: 1,
+          border: '1px solid',
+          justifyContent: 'start',
+          borderRadius: '5px',
+          color: 'primary.dark',
+          margin: 0,
         }}
       >
         <Select
@@ -49,10 +54,8 @@ export const CustomMapSelect = ({
           }}
           sx={{
             minWidth: '250px',
-            backgroundColor: 'rgba(0, 0, 0, 0.95)',
             fontSize: '1.2rem',
 
-     
             color: 'primary.main',
             '&.Mui-focused .MuiOutlinedInput': {
               borderColor: 'transparent',

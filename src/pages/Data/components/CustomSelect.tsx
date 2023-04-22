@@ -25,6 +25,11 @@ export const CustomSelect = ({
         sx={{
           m: 1,
           minWidth: 120,
+          margin: 0,
+          padding: 0,
+          border: '1px solid',
+          borderRadius: '5px',
+          color: 'primary.dark',
         }}
       >
         <Select
@@ -44,9 +49,6 @@ export const CustomSelect = ({
             backgroundColor: 'rgba(0, 0, 0, 0.9)',
             fontSize: '1.8rem',
 
-            '&: hover': {
-              border: '1px solid transparent',
-            },
             color: 'primary.main',
             '&.Mui-focused .MuiOutlinedInput': {
               borderColor: 'transparent',

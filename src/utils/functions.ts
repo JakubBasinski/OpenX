@@ -60,16 +60,41 @@ export const getDistanceInfo = (users) => {
   return { maxDistance, maxDistanceUsers };
 };
 
-
 export function calculateDistance(user1, user2) {
   const point1 = {
     latitude: parseFloat(user1.address.geolocation.lat),
-    longitude: parseFloat(user1.address.geolocation.long)
+    longitude: parseFloat(user1.address.geolocation.long),
   };
   const point2 = {
     latitude: parseFloat(user2.address.geolocation.lat),
-    longitude: parseFloat(user2.address.geolocation.long)
+    longitude: parseFloat(user2.address.geolocation.long),
   };
   const distance = geolib.getDistance(point1, point2);
   return distance;
+}
+
+export function findHighestValueCartUser(carts, productPriceMap) {
+  const highestValueCart = { userId: null, highestValue: 0 };
+
+  carts.forEach((cart) => {
+    let cartValue = 0;
+
+    cart.products.forEach((item) => {
+      const price = productPriceMap.get(item.productId.toString());
+      if (price) {
+        const itemValue = price * item.quantity;
+        cartValue += itemValue;
+      }
+    });
+
+    if (cartValue > highestValueCart.highestValue) {
+      highestValueCart.userId = cart.userId;
+      highestValueCart.highestValue = cartValue;
+    }
+  });
+
+  return {
+    userId: highestValueCart.userId,
+    highestValue: highestValueCart.highestValue.toFixed(2),
+  };
 }
