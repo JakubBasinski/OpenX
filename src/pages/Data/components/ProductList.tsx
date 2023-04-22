@@ -6,6 +6,7 @@ import { shorthenString } from '../../../utils/functions';
 import ReactPaginate from 'react-paginate';
 import { useState } from 'react';
 import styles from '../data.module.scss';
+import * as cls from './sytlesComponentsSx';
 
 export const ProductList = ({ products, activeProduct, setActiveProducts }) => {
   const [pageNumber, setPageNumber] = useState(0);
@@ -59,13 +60,7 @@ export const ProductList = ({ products, activeProduct, setActiveProducts }) => {
     ));
 
   return (
-    <List
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '10px',
-      }}
-    >
+    <List sx={cls.list}>
       {pageCount < 2 ? null : (
         <ReactPaginate
           previousLabel={'Previous'}

@@ -5,6 +5,7 @@ import { Typography, Box } from '@mui/material';
 import { capFirstLetter } from '../../../utils/functions';
 import ReactPaginate from 'react-paginate';
 import styles from '../data.module.scss';
+import * as cls from './sytlesComponentsSx';
 
 export const UserList = ({ users, activeUser, setActiveUser }) => {
   const [pageNumber, setPageNumber] = useState(0);
@@ -53,13 +54,7 @@ export const UserList = ({ users, activeUser, setActiveUser }) => {
     ));
 
   return (
-    <List
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '10px',
-      }}
-    >
+    <List sx={cls.list}>
       <Box>
         {pageCount < 2 ? null : (
           <ReactPaginate

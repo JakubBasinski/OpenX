@@ -3,6 +3,9 @@ import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import * as cls from './sytlesComponentsSx';
+
+const categoriesToSelect = ['Users', 'Products', 'Carts'];
 
 export const CustomSelect = ({
   dataType,
@@ -12,26 +15,8 @@ export const CustomSelect = ({
   handleClose,
 }) => {
   return (
-    <Box
-      sx={{
-        height: '100%',
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <FormControl
-        sx={{
-          m: 1,
-          minWidth: 120,
-          margin: 0,
-          padding: 0,
-          border: '1px solid',
-          borderRadius: '5px',
-          color: 'primary.dark',
-        }}
-      >
+    <Box sx={cls.customSelectWrapper}>
+      <FormControl sx={cls.formControl}>
         <Select
           labelId="demo-controlled-open-select-label"
           id="demo-controlled-open-select"
@@ -44,60 +29,13 @@ export const CustomSelect = ({
           MenuProps={{
             PaperProps: { sx: { background: 'black' } },
           }}
-          sx={{
-            minWidth: '250px',
-            backgroundColor: 'rgba(0, 0, 0, 0.9)',
-            fontSize: '1.8rem',
-
-            color: 'primary.main',
-            '&.Mui-focused .MuiOutlinedInput': {
-              borderColor: 'transparent',
-            },
-            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-              borderColor: 'transparent',
-            },
-            '& .MuiOutlinedInput-notchedOutline': {
-              borderColor: 'transparent',
-            },
-            '&.Mui-hover .MuiOutlinedInput-notchedOutline': {
-              borderColor: 'transparent',
-            },
-            '& .MuiSelect-icon': {
-              color: 'primary.main',
-            },
-            '& .MuiInputBase-input': {
-              color: 'primary.dark',
-            },
-          }}
+          sx={cls.selectElement}
         >
-          <MenuItem
-            sx={{
-              color: 'primary.dark',
-              '&:hover': { color: 'secondary.main' },
-            }}
-            value={'Users'}
-          >
-            Users
-          </MenuItem>
-          <MenuItem
-            sx={{
-              color: 'primary.dark',
-
-              '&:hover': { color: 'secondary.main' },
-            }}
-            value={'Products'}
-          >
-            Products
-          </MenuItem>
-          <MenuItem
-            sx={{
-              color: 'primary.dark',
-              '&:hover': { color: 'secondary.main' },
-            }}
-            value={'Carts'}
-          >
-            Carts
-          </MenuItem>
+          {categoriesToSelect.map((cat, i) => (
+            <MenuItem key={i} sx={cls.menuItem} value={cat}>
+              {cat}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
     </Box>

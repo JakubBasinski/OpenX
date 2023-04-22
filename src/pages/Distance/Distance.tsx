@@ -10,8 +10,8 @@ import { Snackbar, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { CustomMapSelect } from './components/CustomMapSelect';
 import { calculateDistance } from '../../utils/functions';
-const message =
-  'FakeApi provides fake coordinates that is why San Antonio is in the middle of the ocean :) ';
+import { message } from './stylesSx';
+import * as cls from './stylesSx';
 
 export const Distance = () => {
   const [isStackBarOpen, setSnackBarOpen] = useState(true);
@@ -22,8 +22,8 @@ export const Distance = () => {
   const [selectedUsers, setSelectedUsers] = useState<[] | null>(null);
   const [openCustom, setOpenCustom] = useState(false);
   const [openCustom1, setOpenCustom1] = useState(false);
-  let selectedUsersDistance;
 
+  let selectedUsersDistance;
   if (selectedUsers) {
     selectedUsersDistance = calculateDistance(
       selectedUsers[0],
@@ -118,29 +118,10 @@ export const Distance = () => {
   }
 
   return (
-    <Box
-      sx={{
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: 'rgba(0, 0, 0, 0.95)',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <Box sx={{ height: '25vh', display: 'flex' }}>
-        <Box
-          sx={{
-            backdropFilter: 'blur(2px)',
-            padding: '30px 60px',
-            display: 'flex',
-            flexDirection: 'column',
-            borderRadius: '5px',
-            gap: ' 15px',
-            margin: 'auto',
-          }}
-        >
-          <Box sx={{ display: 'flex' }}>
+    <Box sx={cls.container}>
+      <Box sx={cls.upperPart}>
+        <Box sx={cls.distanceInfor}>
+          <Box sx={cls.infoBox}>
             <Typography sx={{ color: 'primary.dark' }}>
               The largest distance is equal{' '}
               <Typography
@@ -153,9 +134,9 @@ export const Distance = () => {
               km between :
             </Typography>
           </Box>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+          <Box sx={cls.userDetails}>
             {farAwayUsers?.map((user, i) => (
-              <Box key={i} sx={{ display: 'flex', gap: '5px' }}>
+              <Box key={i} sx={cls.singleUserBox}>
                 <Typography sx={{ color: 'secondary.main' }} variant={'h5'}>
                   {capFirstLetter(user.name.firstname)}
                 </Typography>
@@ -168,33 +149,9 @@ export const Distance = () => {
         </Box>
       </Box>
 
-      <Box
-        sx={{
-          height: '75vh',
-          display: 'flex',
-          width: '100%',
-        }}
-      >
-        <Box
-          sx={{
-            width: '35%',
-            dispaly: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            padding: '0 40px',
-          }}
-        >
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              borderRadius: '5px',
-              gap: ' 30px',
-              margin: 'auto',
-              justifyContent: 'center',
-            }}
-          >
+      <Box sx={cls.bottomPart}>
+        <Box sx={cls.bottomLeftPartContainer}>
+          <Box sx={cls.bottomLeftPartWrapper}>
             <Typography
               sx={{
                 color: 'primary.dark',
@@ -237,38 +194,11 @@ export const Distance = () => {
             </Box>
 
             <Box>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  width: '300px',
-
-                  backdropFilter: blur('2px'),
-                  borderRadius: '5px',
-
-                  gap: '15px',
-                }}
-              >
+              <Box sx={cls.selectedUserDetails}>
                 {selectedUsers?.map((user, i) => (
                   <Box key={i}>
-                    <Typography
-                      sx={{
-                        textAlign: 'start ',
-                        color: 'grey',
-                        padding: '0',
-                        margin: '0',
-                        fontSize: ' 0.8rem',
-                      }}
-                    >
-                      User {i + 1}
-                    </Typography>
-                    <Typography
-                      sx={{
-                        color: 'primary.dark',
-                        textAlign: 'start ',
-                        fontSize: '1.2rem',
-                      }}
-                    >
+                    <Typography sx={cls.subTitle}>User {i + 1}</Typography>
+                    <Typography sx={cls.title}>
                       {capFirstLetter(user.name.firstname)}{' '}
                       {capFirstLetter(user.name.lastname)},{' '}
                       {capFirstLetter(user.address.city)}
@@ -276,17 +206,7 @@ export const Distance = () => {
                   </Box>
                 ))}
                 <Box>
-                  <Typography
-                    sx={{
-                      textAlign: 'start ',
-                      color: 'grey',
-                      padding: '0',
-                      margin: '0',
-                      fontSize: ' 0.8rem',
-                    }}
-                  >
-                    Distance
-                  </Typography>
+                  <Typography sx={cls.subTitle}>Distance</Typography>
                   <Typography
                     sx={{
                       color: 'primary.dark',
@@ -301,13 +221,7 @@ export const Distance = () => {
             </Box>
           </Box>
         </Box>
-        <Box
-          sx={{
-            width: '50%',
-            borderRadius: '5px',
-            marginBottom: '20px',
-          }}
-        >
+        <Box sx={cls.title}>
           <Map selectedUsers={selectedUsers} />
         </Box>
       </Box>

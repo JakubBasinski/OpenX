@@ -6,7 +6,7 @@ import CustomHashTable from '../../utils/CustomHashTable';
 import { capFirstLetter } from '../../utils/functions';
 import { IsLoading } from '../Data/components/IsLoading';
 import { IsError } from '../Data/components/isError';
-
+import * as cls from './stylesSx';
 
 export const Categories = () => {
   const {
@@ -48,65 +48,19 @@ export const Categories = () => {
   }
 
   return (
-    <Box
-      sx={{
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: 'rgba(0, 0, 0, 0.9)',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <Box
-        sx={{
-          width: '60%',
-          // backgroundColor: 'rgba(0, 0, 0, 0.9)',
-          backdropFilter: 'blur(2px)',
-          padding: '40px 60px',
-          display: 'flex',
-          flexDirection: 'column',
-          borderRadius: '5px',
-        }}
-      >
+    <Box sx={cls.container}>
+      <Box sx={cls.info}>
         <Typography
           variant="h4"
           sx={{ marginBottom: '20px', color: 'primary.dark' }}
         >
           CATEGORY LIST
         </Typography>
-        <Box
-          sx={{
-            width: '100%',
-            display: 'flex',
-          }}
-        >
-          <Box
-            sx={{
-              width: '10%',
-              padding: '8px',
-              border: 'solid 1px white',
-              borderColor: 'primary.dark',
-            }}
-          >
-            <Typography
-              sx={{
-                display: 'flex',
-                color: 'primary.dark',
-                justifyContent: 'center',
-              }}
-            >
-              Nr
-            </Typography>
+        <Box sx={cls.tableWrapper}>
+          <Box sx={cls.column1}>
+            <Typography sx={cls.nr}>Nr</Typography>
           </Box>
-          <Box
-            sx={{
-              width: '45%',
-              padding: '8px',
-              border: 'solid 1px white',
-              borderColor: 'primary.dark',
-            }}
-          >
+          <Box sx={cls.column}>
             <Typography
               sx={{
                 display: 'flex',
@@ -117,67 +71,22 @@ export const Categories = () => {
               NAME
             </Typography>
           </Box>
-          <Box
-            sx={{
-              width: '45%',
-              padding: '8px',
-              border: 'solid 1px white',
-              borderColor: 'primary.dark',
-            }}
-          >
-            <Typography
-              sx={{
-                display: 'flex',
-                color: 'primary.dark',
-                justifyContent: 'center',
-              }}
-            >
-              QUANTITY
-            </Typography>
+          <Box sx={cls.column}>
+            <Typography sx={cls.nr}>QUANTITY</Typography>
           </Box>
         </Box>
         <Box>
           {categories.map((category, i) => (
-            <Box
-              key={i}
-              sx={{
-                width: '100%',
-                display: 'flex',
-              }}
-            >
-              <Box
-                sx={{
-                  width: '10%',
-                  padding: '8px',
-                  border: 'solid 1px white',
-                  borderColor: 'primary.dark',
-                }}
-              >
+            <Box key={i} sx={cls.tableWrapper}>
+              <Box sx={cls.column1}>
                 <Typography sx={{ color: 'primary.dark' }}>{i + 1}</Typography>
               </Box>
-              <Box
-                sx={{
-                  width: '45%',
-                  padding: '8px',
-                  border: 'solid 1px white',
-                  borderColor: 'primary.dark',
-                }}
-              >
+              <Box sx={cls.column}>
                 <Typography sx={{ color: 'primary.dark' }}>
                   {capFirstLetter(category)}
                 </Typography>
               </Box>
-              <Box
-                sx={{
-                  width: '45%',
-                  padding: '5px',
-                  border: 'solid 1px white',
-                  borderColor: 'primary.dark',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
+              <Box sx={cls.column}>
                 <Typography sx={{ color: 'primary.dark' }}>
                   {table.get(category)}
                 </Typography>

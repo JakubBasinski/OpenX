@@ -4,18 +4,16 @@ import { Grid } from '@mui/material';
 import { CustomSelect } from './components/CustomSelect';
 import { IsLoading } from './components/IsLoading';
 import { IsError } from './components/isError';
-
 import { UserCard } from '../../components/UserCard';
 import { ProductCard } from '../../components/ProductCard';
 import { CartCard } from '../../components/CartCard';
-
 import { CartList } from './components/CartList';
 import { ProductList } from './components/ProductList';
 import { UserList } from './components/UserList';
-
 import { useProductData } from '../../hooks/useProductData';
 import { useUserData } from '../../hooks/useUserData';
 import { useCartData } from '../../hooks/useCartsData';
+import * as cls from './stylesSx';
 
 export const Data = () => {
   const [dataType, setDataType] = useState<string | number>('Users');
@@ -76,14 +74,7 @@ export const Data = () => {
   console.log('activeCart', activeCart);
 
   return (
-    <Box
-      sx={{
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: 'rgba(0, 0, 0, 0.9)',
-      }}
-    >
+    <Box sx={cls.container}>
       <Grid
         container
         sx={{
