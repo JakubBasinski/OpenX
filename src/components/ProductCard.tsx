@@ -18,7 +18,7 @@ export const ProductCard = ({ product }) => {
         <>
           <Box
             component="img"
-            sx={{ height: '200px', width: '200px', margin: 'auto' }}
+            sx={{ width: '400px', margin: 'auto' }}
             src={product?.image}
             alt={product?.title}
           />

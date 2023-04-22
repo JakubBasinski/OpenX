@@ -1,3 +1,5 @@
+import * as geolib from 'geolib';
+
 export function capFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -20,7 +22,6 @@ export function formatDate(dateString) {
   return `${day}/${month}/${year}`;
 }
 
-
 export function getUniqueCategories(products) {
   const categoriesSet = new Set();
   for (const product of products) {
@@ -29,7 +30,46 @@ export function getUniqueCategories(products) {
   return Array.from(categoriesSet);
 }
 
-
 export function getProductsForCategory(products, category) {
-  return products.filter(product => product.category === category);
+  return products.filter((product) => product.category === category);
+}
+
+export const getDistanceInfo = (users) => {
+  let maxDistance = 0;
+  let maxDistanceUsers = [];
+
+  for (let i = 0; i < users.length; i++) {
+    for (let j = i + 1; j < users.length; j++) {
+      const user1Location = {
+        latitude: parseFloat(users[i].address.geolocation.lat),
+        longitude: parseFloat(users[i].address.geolocation.long),
+      };
+      const user2Location = {
+        latitude: parseFloat(users[j].address.geolocation.lat),
+        longitude: parseFloat(users[j].address.geolocation.long),
+      };
+
+      const distance = geolib.getDistance(user1Location, user2Location);
+
+      if (distance > maxDistance) {
+        maxDistance = distance;
+        maxDistanceUsers = [users[i], users[j]];
+      }
+    }
+  }
+  return { maxDistance, maxDistanceUsers };
+};
+
+
+export function calculateDistance(user1, user2) {
+  const point1 = {
+    latitude: parseFloat(user1.address.geolocation.lat),
+    longitude: parseFloat(user1.address.geolocation.long)
+  };
+  const point2 = {
+    latitude: parseFloat(user2.address.geolocation.lat),
+    longitude: parseFloat(user2.address.geolocation.long)
+  };
+  const distance = geolib.getDistance(point1, point2);
+  return distance;
 }

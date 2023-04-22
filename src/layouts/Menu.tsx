@@ -4,11 +4,8 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import { Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
-import styles from './menu.module.scss';
-import StyledNavLink from './StyledNavLink';
-import { red } from '@mui/material/colors';
 
-const menuList = ['Data', 'Categories', 'Cart', 'Users'];
+const menuList = ['Data', 'Categories', 'Distance', 'Users'];
 
 // font-family: 'Roboto Condensed', sans-serif;
 

@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Box } from '@mui/material';
 import { Data } from './pages/Data/Data';
 import { Users } from './pages/Users';
-import { Carts } from './pages/Carts';
+import { Distance } from './pages/Distance/Distance';
 import { Categories } from './pages/Categories/Categories';
 
 export const AppRoutes = () => {
@@ -13,7 +13,7 @@ export const AppRoutes = () => {
         <Route path="/data" element={<Data />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/users" element={<Users />} />
-        <Route path="/carts" element={<Carts />} />
+        <Route path="/distance" element={<Distance />} />
       </Routes>
     </Box>
   );

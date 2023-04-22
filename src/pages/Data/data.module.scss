@@ -1,14 +1,23 @@
 .paginationBttns {
-  width: 80%;
-  height: 40px;
+  height: 80px;
+  gap: 10px;
   list-style: none;
   display: flex;
   justify-content: center;
+  align-items: center;
+  margin:0;
+  padding: 0 ;
+  li {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .paginationBttns a {
-  padding: 10px;
-  margin: 5px;
+  padding: 5px 10px;
+  // margin-left: 10px;
   border-radius: 1px;
   background: rgba(0, 0, 0, 0.9);
   border: solid 1px rgb(26, 118, 106);
@@ -21,10 +30,10 @@
 }
 
 .paginationActive a {
-  background-color: rgb(26, 118, 106);
-  color: white;
+  // background-color: rgb(26, 118, 106);
+  // color: white;
 }
 
 .paginationDisabled a {
-  display: none;
+  // display: none;
 }

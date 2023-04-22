@@ -43,8 +43,7 @@ export const ProductList = ({ products, activeProduct, setActiveProducts }) => {
             padding: '10px 30px',
             margin: 0,
             borderRadius: '5px',
-            transition:
-              'color 0.3s ease-in-out, background-color 0.5s ease-in-out',
+       
             cursor: 'pointer',
             '&:hover': {
               color: 'primary.dark',

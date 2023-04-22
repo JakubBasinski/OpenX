@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import Typography from '@mui/material/Typography';
+import { Typography, Box } from '@mui/material';
 import { capFirstLetter } from '../../../utils/functions';
 import ReactPaginate from 'react-paginate';
 import styles from '../data.module.scss';
@@ -40,8 +40,7 @@ export const UserList = ({ users, activeUser, setActiveUser }) => {
             padding: '10px 30px',
             margin: 0,
             borderRadius: '5px',
-            transition:
-              'color 0.3s ease-in-out, background-color 0.5s ease-in-out',
+
             cursor: 'pointer',
             '&:hover': {
               color: 'primary.dark',
@@ -60,20 +59,26 @@ export const UserList = ({ users, activeUser, setActiveUser }) => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
+        border: 'solid red 1px',
         gap: '10px',
+        width: '100%',
+        height: '100%',
       }}
     >
-      {pageCount < 2 ? null : (
-        <ReactPaginate
-          previousLabel={'Previous'}
-          nextLabel={'Next'}
-          pageCount={pageCount}
-          onPageChange={changePage}
-          containerClassName={styles.paginationBttns}
-          disabledClassName={styles.paginationDisabled}
-          activeClassName={styles.paginationActive}
-        />
-      )}
+      <Box>
+        {pageCount < 2 ? null : (
+          <ReactPaginate
+            previousLabel={'Previous'}
+            nextLabel={'Next'}
+            pageCount={pageCount}
+            onPageChange={changePage}
+            containerClassName={styles.paginationBttns}
+            disabledClassName={styles.paginationDisabled}
+            activeClassName={styles.paginationActive}
+          />
+        )}
+      </Box>
+
       {displayesUsers}
     </List>
   );

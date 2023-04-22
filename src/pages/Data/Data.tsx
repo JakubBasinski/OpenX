@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
-import { Grid, Typography } from '@mui/material';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import { capFirstLetter } from '../../utils/functions';
+import { Grid } from '@mui/material';
 import { CustomSelect } from './components/CustomSelect';
 import { IsLoading } from './components/IsLoading';
 import { IsError } from './components/isError';
@@ -86,7 +83,7 @@ export const Data = () => {
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
       }}
     >
       <Grid
@@ -120,7 +117,8 @@ export const Data = () => {
             display: 'flex',
             justifyContent: 'center',
             height: '100%',
-            padding: '10px',
+            // border: '1px solid red',
+            // padding: '10px',
           }}
           xs={4}
         >
@@ -157,26 +155,3 @@ export const Data = () => {
     </Box>
   );
 };
-
-{
-  /* {users?.map((user, i) => ( */
-}
-
-// <Grid
-//   item
-//   sx={{
-//     border: 'solid red 1px',
-//     backgroundColor: 'rgba(0, 0, 0, 0.9)',
-//     border: '2px solid transparent',
-
-//     borderRadius: '5px',
-//     padding: '10px',
-//   }}
-
-//   item
-//   key={i}
-//   xs={2}
-// >
-//   <UserCard user={user} />
-// </Grid>
-// ))}
