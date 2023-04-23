@@ -16,6 +16,7 @@ import { useCartData } from '../../hooks/useCartsData';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import * as cls from './stylesSx';
+import { motion } from 'framer-motion';
 
 export const Data = () => {
   const [showList, setShowList] = useState(true);
@@ -99,119 +100,130 @@ export const Data = () => {
   console.log('activeCart', activeCart);
 
   return (
-    <Box sx={cls.container}>
-      <Grid
-        container
-        sx={{
-          height: '15%',
-          width: '100%',
-        }}
-      >
-        <CustomSelect
-          dataType={dataType}
-          handleChange={handleChange}
-          open={open}
-          handleOpen={handleOpen}
-          handleClose={handleClose}
-          handleShowList={handleShowList}
-        />
-      </Grid>
+    <motion.div
+    initial={{ opacity: 0, display: 'none' }}
+    transition={{
+      duration: 0.2,
+      ease: 'easeOut',
+      delay: 0.5,
+    }}
+    animate={{ opacity: 1, display: 'flex' }}
+    exit={{ opacity: 0, transition: { delay: 0, duration: 0.2 } }}
+    style={{ height: '100%', width: '100% ' }}
+  >
+      <Box sx={cls.container}>
+        <Grid
+          container
+          sx={{
+            height: '15%',
+            width: '100%',
+          }}
+        >
+          <CustomSelect
+            dataType={dataType}
+            handleChange={handleChange}
+            open={open}
+            handleOpen={handleOpen}
+            handleClose={handleClose}
+            handleShowList={handleShowList}
+          />
+        </Grid>
 
-      <Grid
-        container
-        sx={{
-          overflow: 'scroll',
-          height: '85%',
-          display: 'flex',
-          paddingTop: '20px'
-        }}
-      >
-        {(!showCart || !isSmallScreen) && (
-          <Grid
-            item
-            sx={{
-              overflow: 'scroll',
-              display: 'flex',
-              justifyContent: 'center',
-              height: '100%',
-            }}
-            xs={12}
-            md={6}
-            lg={4}
-          >
-            {dataType === 'Users' && (
-              <UserList
-                handleShowCart={handleShowCart}
-                users={users}
-                activeUser={activeUser}
-                setActiveUser={setActiveUser}
-                
-              />
-            )}
-
-            {dataType === 'Products' && (
-              <ProductList
-                handleShowCart={handleShowCart}
-                products={products}
-                activeProduct={activeProduct}
-                setActiveProducts={setActiveProducts}
-              />
-            )}
-
-            {dataType === 'Carts' && (
-              <CartList
-                handleShowCart={handleShowCart}
-                carts={carts}
-                activeCart={activeCart}
-                setActiveCart={setActiveCart}
-              />
-            )}
-          </Grid>
-        )}
-
-        {(!showList || !isSmallScreen) && (
-          <Grid
-            sx={(theme) => ({
-              display: 'flex',
-              alignItems: 'start',
-              justifyContent: 'start',
-              [theme.breakpoints.down('md')]: {
+        <Grid
+          container
+          sx={{
+            overflow: 'scroll',
+            height: '85%',
+            display: 'flex',
+            paddingTop: '20px',
+          }}
+        >
+          {(!showCart || !isSmallScreen) && (
+            <Grid
+              item
+              sx={{
+                overflow: 'scroll',
+                display: 'flex',
                 justifyContent: 'center',
-              },
-              padding: '20px'
-            })}
-            item
-            xs={12}
-            md={6}
-            lg={8}
-          >
-            {dataType === 'Users' && (
-              <UserCard
-                user={activeUser}
-                handleShowList={handleShowList}
-                isSmallScreen={isSmallScreen}
-                showButtom={showList}
-              />
-            )}
-            {dataType === 'Products' && (
-              <ProductCard
-                product={activeProduct}
-                handleShowList={handleShowList}
-                isSmallScreen={isSmallScreen}
-                showButtom={showList}
-              />
-            )}
-            {dataType === 'Carts' && (
-              <CartCard
-                cart={activeCart}
-                handleShowList={handleShowList}
-                isSmallScreen={isSmallScreen}
-                showButtom={showList}
-              />
-            )}
-          </Grid>
-        )}
-      </Grid>
-    </Box>
+                height: '100%',
+              }}
+              xs={12}
+              md={6}
+              lg={4}
+            >
+              {dataType === 'Users' && (
+                <UserList
+                  handleShowCart={handleShowCart}
+                  users={users}
+                  activeUser={activeUser}
+                  setActiveUser={setActiveUser}
+                />
+              )}
+
+              {dataType === 'Products' && (
+                <ProductList
+                  handleShowCart={handleShowCart}
+                  products={products}
+                  activeProduct={activeProduct}
+                  setActiveProducts={setActiveProducts}
+                />
+              )}
+
+              {dataType === 'Carts' && (
+                <CartList
+                  handleShowCart={handleShowCart}
+                  carts={carts}
+                  activeCart={activeCart}
+                  setActiveCart={setActiveCart}
+                />
+              )}
+            </Grid>
+          )}
+
+          {(!showList || !isSmallScreen) && (
+            <Grid
+              sx={(theme) => ({
+                display: 'flex',
+                alignItems: 'start',
+                justifyContent: 'start',
+                [theme.breakpoints.down('md')]: {
+                  justifyContent: 'center',
+                },
+                padding: '20px',
+              })}
+              item
+              xs={12}
+              md={6}
+              lg={8}
+            >
+              {dataType === 'Users' && (
+                <UserCard
+                  user={activeUser}
+                  handleShowList={handleShowList}
+                  isSmallScreen={isSmallScreen}
+                  showButtom={showList}
+                />
+              )}
+              {dataType === 'Products' && (
+                <ProductCard
+                  product={activeProduct}
+                  handleShowList={handleShowList}
+                  isSmallScreen={isSmallScreen}
+                  showButtom={showList}
+                />
+              )}
+              {dataType === 'Carts' && (
+                <CartCard
+                  cart={activeCart}
+                  handleShowList={handleShowList}
+                  isSmallScreen={isSmallScreen}
+                  showButtom={showList}
+                />
+              )}
+            </Grid>
+          )}
+        </Grid>
+      </Box>
+    </motion.div>
   );
 };

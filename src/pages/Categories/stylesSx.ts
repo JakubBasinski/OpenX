@@ -1,5 +1,6 @@
 export const container = {
   width: '100%',
+  height: '100%',
   display: 'flex',
   flexDirection: 'column',
   backgroundColor: 'rgba(0, 0, 0, 0.9)',
@@ -9,7 +10,6 @@ export const container = {
 
 export const info = {
   width: '60%',
-  backdropFilter: 'blur(2px)',
   display: 'flex',
   flexDirection: 'column',
   borderRadius: '5px',

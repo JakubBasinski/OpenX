@@ -8,7 +8,6 @@ import * as cls from './stylesSx';
 
 const menuList = ['Data', 'Categories', 'Distance', 'Cart'];
 
-
 export const Menu = ({ handleMenuItemClick }) => {
   return (
     <Box sx={cls.container}>

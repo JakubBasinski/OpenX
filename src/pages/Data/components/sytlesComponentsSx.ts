@@ -10,7 +10,6 @@ export const customSelectWrapper = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  // marginTop: '15px'
 };
 
 export const formControl = {

@@ -42,7 +42,6 @@ export const ProductList = ({ products,handleShowCart, activeProduct, setActiveP
               activeProduct?.id === product?.id
                 ? 'secondary.dark'
                 : 'transparent',
-            backdropFilter: blur('2px'),
             width: '100%',
             padding: '10px 30px',
             margin: 0,

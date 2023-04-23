@@ -25,7 +25,6 @@ export const upperPart = (theme) => {
 };
 
 export const distanceInfor = {
-  backdropFilter: 'blur(2px)',
   padding: '20px 30px',
   display: 'flex',
   flexDirection: 'column',
@@ -38,7 +37,6 @@ export const infoBox = { display: 'flex' };
 
 export const userDetails = {
   display: 'flex',
-  // flexDirection: 'column',
   gap: '20px',
   justifyContent: 'center',
 };

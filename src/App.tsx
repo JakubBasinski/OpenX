@@ -1,6 +1,6 @@
 import './App.scss';
 import React, { useState, useEffect } from 'react';
-import { createTheme, ThemeProvider } from '@mui/material';
+import { ThemeProvider } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { Menu } from './layouts/Menu';
 import { AppRoutes } from './AppRoutes';
@@ -8,20 +8,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { BackToMenuArrow } from './components/BackToMenuArrow';
-
-const customTheme = createTheme({
-  palette: {
-    primary: {
-      main: 'rgb(246,232,199)',
-    },
-    secondary: {
-      main: '#26aa98',
-    },
-  },
-  typography: {
-    fontFamily: 'Roboto Condensed, sans-serif',
-  },
-});
+import { customTheme } from './utils/customTheme';
+import { AnimatePresence } from 'framer-motion';
 
 function App() {
   const theme = useTheme();
@@ -70,7 +58,6 @@ function App() {
           </Grid>
         )}
       </Grid>
-      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
       {!menuVisible && <BackToMenuArrow handleShowMenu={handleShowMenu} />}
     </ThemeProvider>
   );
