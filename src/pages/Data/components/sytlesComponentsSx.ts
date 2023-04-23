@@ -10,6 +10,7 @@ export const customSelectWrapper = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  // marginTop: '15px'
 };
 
 export const formControl = {
@@ -70,9 +71,8 @@ export const isLoadingWrapper = {
   justifyContent: 'center',
 };
 
-
-export const stackStyles ={
-    margin: 'auto',
-    width: '30%',
-    color: 'grey.500',
-  }
+export const stackStyles = {
+  margin: 'auto',
+  width: '30%',
+  color: 'grey.500',
+};

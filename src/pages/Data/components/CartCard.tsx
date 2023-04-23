@@ -1,23 +1,41 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import { formatDate } from '../utils/functions';
+import { formatDate } from '../../../utils/functions';
+import { CloseCardButton } from './CloseCardButton';
 
-export const CartCard = ({ cart }) => {
+export const CartCard = ({
+  cart,
+  showButtom,
+  isSmallScreen,
+  handleShowList,
+}) => {
   return (
     <Box
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        width: '300px',
+        // width: '300px',
         padding: '30px ',
         border: '1px solid',
         borderColor: 'primary.dark',
         borderRadius: '5px',
         gap: '15px',
+        marginTop: '30px',
       }}
     >
       {cart ? (
         <>
+          {(!showButtom && isSmallScreen) && (
+            <Box
+              sx={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'flex-end',
+              }}
+            >
+              <CloseCardButton handleShowList={handleShowList} />
+            </Box>
+          )}
           <Box>
             <Typography
               sx={{

@@ -10,11 +10,18 @@ import { Snackbar, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { CustomMapSelect } from './components/CustomMapSelect';
 import { calculateDistance } from '../../utils/functions';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 import { message } from './stylesSx';
 import * as cls from './stylesSx';
+import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
 
 export const Distance = () => {
-  const [isStackBarOpen, setSnackBarOpen] = useState(true);
+  const [showCustomUsers, setShowCustomUsers] = useState(true);
+  const [showGlobe, setshowGlobe] = useState(false);
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const [isStackBarOpen, setSnackBarOpen] = useState(false);
   const { data: usersData, isLoading, isError } = useUserData();
   const users = usersData?.data;
   const [distance, setDistance] = useState<number | null>(null);
@@ -77,6 +84,13 @@ export const Distance = () => {
   };
 
   useEffect(() => {
+    if (!isSmallScreen) {
+      setShowCustomUsers(true);
+      setshowGlobe(true);
+    }
+  }, [isSmallScreen]);
+
+  useEffect(() => {
     if (users && users.length > 0) {
       const { maxDistance, maxDistanceUsers } = getDistanceInfo(users);
       setDistance(maxDistance);
@@ -119,26 +133,26 @@ export const Distance = () => {
       <Box sx={cls.upperPart}>
         <Box sx={cls.distanceInfor}>
           <Box sx={cls.infoBox}>
-            <Typography sx={{ color: 'primary.dark' }}>
+            <Typography variant={'h5'} sx={{ color: 'primary.dark' }}>
               The largest distance is equal{' '}
               <Typography
-                variant={'h5'}
+                variant={'h4'}
                 sx={{ color: 'secondary.main' }}
                 component="span"
               >
                 {Math.floor(distance / 1000)}
               </Typography>{' '}
-              km between :
+              km between users:
             </Typography>
           </Box>
           <Box sx={cls.userDetails}>
             {farAwayUsers?.map((user, i) => (
               <Box key={i} sx={cls.singleUserBox}>
                 <Typography sx={{ color: 'secondary.main' }} variant={'h5'}>
-                  {capFirstLetter(user.name.firstname)}
+                  {user.name.firstname.toUpperCase()}
                 </Typography>
                 <Typography sx={{ color: 'secondary.main' }} variant={'h5'}>
-                  {capFirstLetter(user.name.lastname)}
+                  {user.name.lastname.toUpperCase()}
                 </Typography>
               </Box>
             ))}
@@ -147,85 +161,125 @@ export const Distance = () => {
       </Box>
 
       <Box sx={cls.bottomPart}>
-        <Box sx={cls.bottomLeftPartContainer}>
-          <Box sx={cls.bottomLeftPartWrapper}>
-            <Typography
-              sx={{
-                color: 'primary.dark',
-                fontSize: '1.2rem',
+        {(!showGlobe || !isSmallScreen) && (
+          <Box sx={cls.bottomLeftPartContainer}>
+            <Box sx={cls.bottomLeftPartWrapper}>
+              <Typography
+                sx={{
+                  color: 'primary.dark',
+                  fontSize: '1.2rem',
+                  textAlign: 'start',
+                }}
+                variant={'h5'}
+              >
+                Check distances for other users
+              </Typography>
 
-                textAlign: 'start',
-              }}
-              variant={'h5'}
-            >
-              Check distances for other users
-            </Typography>
+              <Box sx={cls.cumstomSelectContainer}>
+                <CustomMapSelect
+                  handleCloseCustom={handleCloseCustom}
+                  handleOpenCustom={handleOpenCustom}
+                  openCustom={openCustom}
+                  handleChangeCustom={handleChangeCustom}
+                  selectedUsers={selectedUsers}
+                  users={users}
+                  index={0}
+                />
+                <CustomMapSelect
+                  handleCloseCustom={handleCloseCustom1}
+                  handleOpenCustom={handleOpenCustom1}
+                  openCustom={openCustom1}
+                  handleChangeCustom={handleChangeCustom1}
+                  selectedUsers={selectedUsers}
+                  users={users}
+                  index={1}
+                />
+              </Box>
 
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'start',
-                alignItems: 'start',
-                gap: '15px',
-              }}
-            >
-              <CustomMapSelect
-                handleCloseCustom={handleCloseCustom}
-                handleOpenCustom={handleOpenCustom}
-                openCustom={openCustom}
-                handleChangeCustom={handleChangeCustom}
-                selectedUsers={selectedUsers}
-                users={users}
-                index={0}
-              />
-              <CustomMapSelect
-                handleCloseCustom={handleCloseCustom1}
-                handleOpenCustom={handleOpenCustom1}
-                openCustom={openCustom1}
-                handleChangeCustom={handleChangeCustom1}
-                selectedUsers={selectedUsers}
-                users={users}
-                index={1}
-              />
-            </Box>
-
-            <Box>
-              <Box sx={cls.selectedUserDetails}>
-                {selectedUsers?.map((user, i) => (
-                  <Box key={i}>
-                    <Typography sx={cls.subTitle}>User {i + 1}</Typography>
-                    <Typography sx={cls.title}>
-                      {capFirstLetter(user.name.firstname)}{' '}
-                      {capFirstLetter(user.name.lastname)},{' '}
-                      {capFirstLetter(user.address.city)}
+              <Box>
+                <Box sx={cls.selectedUserDetails}>
+                  {selectedUsers?.map((user, i) => (
+                    <Box key={i}>
+                      <Typography sx={cls.subTitle}>
+                        User {i + 1}, city
+                      </Typography>
+                      <Typography sx={cls.title}>
+                        {capFirstLetter(user.name.firstname)}{' '}
+                        {capFirstLetter(user.name.lastname)},{' '}
+                        {capFirstLetter(user.address.city)}
+                      </Typography>
+                    </Box>
+                  ))}
+                  <Box>
+                    <Typography sx={cls.subTitle}>Distance</Typography>
+                    <Typography
+                      sx={{
+                        color: 'primary.dark',
+                        textAlign: 'start ',
+                        fontSize: '1.2rem',
+                      }}
+                    >
+                      {Math.floor(selectedUsersDistance / 1000)} km
                     </Typography>
                   </Box>
-                ))}
-                <Box>
-                  <Typography sx={cls.subTitle}>Distance</Typography>
-                  <Typography
+                </Box>
+                {isSmallScreen && (
+                  <Box
                     sx={{
+                      marginTop: '50px',
+                      border: 'solid 1px',
+                      padding: '10px 20px ',
+                      borderRadius: '5px',
                       color: 'primary.dark',
-                      textAlign: 'start ',
-                      fontSize: '1.2rem',
+                      cursor: 'pointer',
+                      '&:hover': { color: 'secondary.dark' },
+                    }}
+                    onClick={() => {
+                      setShowCustomUsers(false);
+                      setshowGlobe(true);
                     }}
                   >
-                    {Math.floor(selectedUsersDistance / 1000)} km
-                  </Typography>
-                </Box>
+                    <Typography variant={'h5'}>
+                      Explore where people live
+                    </Typography>
+                  </Box>
+                )}
               </Box>
             </Box>
           </Box>
-        </Box>
-        <Box sx={cls.title}>
-          <Map selectedUsers={selectedUsers} />
-        </Box>
+        )}
+
+        {(!showCustomUsers || !isSmallScreen) && (
+          <Box sx={cls.mapWrapper}>
+            {isSmallScreen && (
+              <CancelPresentationIcon
+                fontSize="large"
+                sx={{
+                  display: 'flex',
+                  marginLeft: 'auto',
+                  marginRight: '20px',
+                  color: 'primary.dark',
+                  cursor: 'pointer',
+                  '&:hover': { color: 'secondary.dark' },
+                }}
+                onClick={() => {
+                  setshowGlobe(false);
+                  setShowCustomUsers(true);
+                }}
+              />
+            )}
+
+            <Map
+              setSnackBarOpen={setSnackBarOpen}
+              selectedUsers={selectedUsers}
+            />
+          </Box>
+        )}
       </Box>
 
       <Snackbar
         open={isStackBarOpen}
-        autoHideDuration={8000}
+        autoHideDuration={3500}
         onClose={handleClose}
         message={message}
         action={action}

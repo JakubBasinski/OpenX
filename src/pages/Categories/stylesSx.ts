@@ -10,10 +10,11 @@ export const container = {
 export const info = {
   width: '60%',
   backdropFilter: 'blur(2px)',
-  padding: '40px 60px',
   display: 'flex',
   flexDirection: 'column',
   borderRadius: '5px',
+  maxWidth: '600px',
+  minWidth: '280px',
 };
 
 export const tableWrapper = {

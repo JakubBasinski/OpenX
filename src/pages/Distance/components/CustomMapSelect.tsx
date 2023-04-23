@@ -32,6 +32,7 @@ export const CustomMapSelect = ({
           borderRadius: '5px',
           color: 'primary.dark',
           margin: 0,
+          minWidth: '180px',
         }}
       >
         <Select
@@ -53,8 +54,8 @@ export const CustomMapSelect = ({
             PaperProps: { sx: { background: 'black' } },
           }}
           sx={{
-            minWidth: '250px',
             fontSize: '1.2rem',
+      
 
             color: 'primary.main',
             '&.Mui-focused .MuiOutlinedInput': {

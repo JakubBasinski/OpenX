@@ -7,7 +7,12 @@ import ReactPaginate from 'react-paginate';
 import styles from '../data.module.scss';
 import * as cls from './sytlesComponentsSx';
 
-export const UserList = ({ users, activeUser, setActiveUser }) => {
+export const UserList = ({
+  handleShowCart,
+  users,
+  activeUser,
+  setActiveUser,
+}) => {
   const [pageNumber, setPageNumber] = useState(0);
   const usersPerPage = 8;
   const pagesVisited = pageNumber * usersPerPage;
@@ -24,6 +29,9 @@ export const UserList = ({ users, activeUser, setActiveUser }) => {
         sx={{
           padding: 0,
           margin: 0,
+        }}
+        onClick={() => {
+          handleShowCart();
         }}
       >
         <Typography

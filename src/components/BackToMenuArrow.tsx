@@ -2,7 +2,7 @@ import React from 'react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Typography, Box } from '@mui/material';
 
-export const BackToMenuArrow = () => {
+export const BackToMenuArrow = ({ handleShowMenu }) => {
   return (
     <Box
       sx={{
@@ -18,6 +18,13 @@ export const BackToMenuArrow = () => {
         color: 'primary.dark',
         border: `1px solid`,
         padding: '4px 8px',
+        cursor: 'pointer',
+        '&:hover': {
+          color: 'secondary.dark',
+        },
+      }}
+      onClick={() => {
+        handleShowMenu(true);
       }}
     >
       <ArrowBackIcon fontSize="small" />

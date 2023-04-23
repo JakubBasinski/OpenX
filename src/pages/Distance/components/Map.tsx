@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   ComposableMap,
   Geographies,
@@ -8,17 +8,21 @@ import {
 
 import { capFirstLetter } from '../../../utils/functions';
 
-const Map = ({ selectedUsers }) => {
+const Map = ({ selectedUsers, setSnackBarOpen }) => {
+  useEffect(() => {
+    setTimeout(() => {
+      setSnackBarOpen(true);
+    }, 1500);
+  }, []);
+
   return (
     <ComposableMap
       projection="geoAzimuthalEqualArea"
-      width={800}
-      height={700}
       style={{ width: '100%', height: '90%' }}
       projectionConfig={{
         rotate: [0, 0, 0],
         center: [0, 0],
-        scale: 200,
+        scale: 150,
       }}
     >
       <Geographies

@@ -26,16 +26,18 @@ const customTheme = createTheme({
 function App() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
-  console.log(isSmallScreen);
-
-  console.log(theme.breakpoints);
   const [menuVisible, setMenuVisible] = useState(true);
+  console.log(theme.breakpoints);
 
   useEffect(() => {
     if (!isSmallScreen) {
       setMenuVisible(true);
     }
   }, [isSmallScreen]);
+
+  const handleShowMenu = () => {
+    setMenuVisible(true);
+  };
 
   const handleMenuItemClick = () => {
     if (isSmallScreen) {
@@ -48,19 +50,28 @@ function App() {
 
   return (
     <ThemeProvider theme={customTheme}>
-      <BackToMenuArrow />
-      <Grid container sx={{ height: '100vh', width: '100%', display: 'flex' }}>
+      <Grid
+        container
+        sx={{
+          height: '100vh',
+          width: '100%',
+          display: 'flex',
+        }}
+      >
         {menuVisible && (
           <Grid item sx={{ height: '100%' }} item xs={12} md={3} lg={2}>
             <Menu handleMenuItemClick={handleMenuItemClick} />
           </Grid>
         )}
 
-        <Grid item xs={12} md={9} lg={10} sx={{}}>
-          <AppRoutes />
-        </Grid>
-        <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+        {(!menuVisible || !isSmallScreen) && (
+          <Grid item xs={12} md={9} lg={10} sx={{height: '100%'}}>
+            <AppRoutes />
+          </Grid>
+        )}
       </Grid>
+      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+      {!menuVisible && <BackToMenuArrow handleShowMenu={handleShowMenu} />}
     </ThemeProvider>
   );
 }

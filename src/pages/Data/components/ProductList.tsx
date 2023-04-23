@@ -8,7 +8,7 @@ import { useState } from 'react';
 import styles from '../data.module.scss';
 import * as cls from './sytlesComponentsSx';
 
-export const ProductList = ({ products, activeProduct, setActiveProducts }) => {
+export const ProductList = ({ products,handleShowCart, activeProduct, setActiveProducts }) => {
   const [pageNumber, setPageNumber] = useState(0);
   const prodctsPerPage = 8;
   const pagesVisited = pageNumber * prodctsPerPage;
@@ -25,6 +25,9 @@ export const ProductList = ({ products, activeProduct, setActiveProducts }) => {
         sx={{
           padding: 0,
           margin: 0,
+        }}
+        onClick={() => {
+          handleShowCart();
         }}
       >
         <Typography

@@ -1,8 +1,14 @@
 import React from 'react';
-import { capFirstLetter } from '../utils/functions';
+import { capFirstLetter } from '../../../utils/functions';
 import { Box, Typography } from '@mui/material';
+import { CloseCardButton } from './CloseCardButton';
 
-export const ProductCard = ({ product }) => {
+export const ProductCard = ({
+  product,
+  showButtom,
+  isSmallScreen,
+  handleShowList,
+}) => {
   return (
     <Box
       sx={(theme) => ({
@@ -12,6 +18,7 @@ export const ProductCard = ({ product }) => {
         [theme.breakpoints.down('lg')]: {
           padding: '30px',
           flexDirection: 'column',
+          height: '100%',
         },
         flexDirection: 'row',
         display: 'flex',
@@ -21,11 +28,22 @@ export const ProductCard = ({ product }) => {
         borderColor: 'primary.dark',
         gap: '50px',
         borderRadius: '5px',
-        marginTop: '30px',
+        // marginTop: '30px',
       })}
     >
       {product ? (
         <>
+          {!showButtom && isSmallScreen && (
+            <Box
+              sx={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'flex-end',
+              }}
+            >
+              <CloseCardButton handleShowList={handleShowList} />
+            </Box>
+          )}
           <Box
             sx={{
               display: 'flex',
@@ -35,11 +53,14 @@ export const ProductCard = ({ product }) => {
           >
             <Box
               component="img"
-              sx={{
-                maxWidth: '300px',
-                maxHeight: '400px',
-                // margin: 'auto',
-              }}
+              sx={(theme) => ({
+                maxWidth: '200px',
+                maxHeight: '300px',
+                [theme.breakpoints.down('md')]:{
+                  maxWidth: '300px',
+                  maxHeight: '400px',
+                }
+              })}
               src={product?.image}
               alt={product?.title}
             />

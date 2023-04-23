@@ -1,8 +1,14 @@
 import React from 'react';
-import { capFirstLetter } from '../utils/functions';
+import { capFirstLetter } from '../../../utils/functions';
 import { Box, Typography } from '@mui/material';
+import { CloseCardButton } from './CloseCardButton';
 
-export const UserCard = ({ user }) => {
+export const UserCard = ({
+  user,
+  showButtom,
+  isSmallScreen,
+  handleShowList,
+}) => {
   return (
     <Box
       sx={{
@@ -21,6 +27,17 @@ export const UserCard = ({ user }) => {
       {user ? (
         <>
           <Box>
+            {(!showButtom && isSmallScreen) && (
+              <Box
+                sx={{
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                }}
+              >
+                <CloseCardButton handleShowList={handleShowList} />
+              </Box>
+            )}
             <Typography
               sx={{
                 textAlign: 'start ',
