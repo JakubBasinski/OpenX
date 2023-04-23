@@ -6,13 +6,12 @@ import { Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import * as cls from './stylesSx';
 
-
 const menuList = ['Data', 'Categories', 'Distance', 'Cart'];
+
 
 export const Menu = ({ handleMenuItemClick }) => {
   return (
     <Box sx={cls.container}>
-
       <List>
         {menuList.map((item, i) => (
           <ListItem

@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { formatDate } from '../../../utils/functions';
 import { CloseCardButton } from './CloseCardButton';
+import * as cls from  './sytlesComponentsSx'
 
 export const CartCard = ({
   cart,
@@ -11,84 +12,44 @@ export const CartCard = ({
 }) => {
   return (
     <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        // width: '300px',
-        padding: '30px ',
-        border: '1px solid',
-        borderColor: 'primary.dark',
-        borderRadius: '5px',
-        gap: '15px',
-        marginTop: '30px',
-      }}
+      sx={cls.cartCardRoot}
     >
       {cart ? (
         <>
           {(!showButtom && isSmallScreen) && (
             <Box
-              sx={{
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'flex-end',
-              }}
+              sx={cls.buttonWrapper}
             >
               <CloseCardButton handleShowList={handleShowList} />
             </Box>
           )}
           <Box>
             <Typography
-              sx={{
-                textAlign: 'start ',
-                color: 'grey',
-                padding: '0',
-                margin: '0',
-                fontSize: ' 0.8rem',
-              }}
+              sx={cls.productCardSub}
             >
               UserId
             </Typography>
             <Typography
-              sx={{
-                color: 'primary.dark',
-                textAlign: 'start ',
-                fontSize: '1.4rem',
-              }}
+             sx={cls.productCardText}
             >
               {cart.userId}
             </Typography>
           </Box>
           <Box>
             <Typography
-              sx={{
-                textAlign: 'start ',
-                color: 'grey',
-                padding: '0',
-                margin: '0',
-                fontSize: ' 0.8rem',
-              }}
+            sx={cls.productCardSub}
             >
               Date
             </Typography>
             <Typography
-              sx={{
-                color: 'primary.dark',
-                textAlign: 'start ',
-                fontSize: '1.4rem',
-              }}
+              sx={cls.productCardText}
             >
               {formatDate(cart.date)}
             </Typography>
           </Box>
           <Box>
             <Typography
-              sx={{
-                textAlign: 'start ',
-                color: 'grey',
-                padding: '0',
-                margin: '0',
-                fontSize: ' 0.8rem',
-              }}
+              sx={cls.productCardSub}
             >
               Products
             </Typography>

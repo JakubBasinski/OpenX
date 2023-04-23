@@ -59,13 +59,13 @@ function App() {
         }}
       >
         {menuVisible && (
-          <Grid item sx={{ height: '100%' }} item xs={12} md={3} lg={2}>
+          <Grid item sx={{ height: '100%' }} xs={12} md={3} lg={2}>
             <Menu handleMenuItemClick={handleMenuItemClick} />
           </Grid>
         )}
 
         {(!menuVisible || !isSmallScreen) && (
-          <Grid item xs={12} md={9} lg={10} sx={{height: '100%'}}>
+          <Grid item xs={12} md={9} lg={10} sx={{ height: '100%' }}>
             <AppRoutes />
           </Grid>
         )}

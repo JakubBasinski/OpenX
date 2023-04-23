@@ -2,6 +2,7 @@ import React from 'react';
 import { capFirstLetter } from '../../../utils/functions';
 import { Box, Typography } from '@mui/material';
 import { CloseCardButton } from './CloseCardButton';
+import * as cls from './sytlesComponentsSx';
 
 export const ProductCard = ({
   product,
@@ -10,36 +11,12 @@ export const ProductCard = ({
   handleShowList,
 }) => {
   return (
-    <Box
-      sx={(theme) => ({
-        [theme.breakpoints.down('sm')]: {
-          padding: '0px',
-        },
-        [theme.breakpoints.down('lg')]: {
-          padding: '30px',
-          flexDirection: 'column',
-          height: '100%',
-        },
-        flexDirection: 'row',
-        display: 'flex',
-        width: '95%',
-        padding: '30px ',
-        border: '1px solid',
-        borderColor: 'primary.dark',
-        gap: '50px',
-        borderRadius: '5px',
-        // marginTop: '30px',
-      })}
-    >
+    <Box sx={cls.productCardRoot}>
       {product ? (
         <>
           {!showButtom && isSmallScreen && (
             <Box
-              sx={{
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'flex-end',
-              }}
+              sx={cls.buttonWrapper}
             >
               <CloseCardButton handleShowList={handleShowList} />
             </Box>
@@ -53,107 +30,33 @@ export const ProductCard = ({
           >
             <Box
               component="img"
-              sx={(theme) => ({
-                maxWidth: '200px',
-                maxHeight: '300px',
-                [theme.breakpoints.down('md')]:{
-                  maxWidth: '300px',
-                  maxHeight: '400px',
-                }
-              })}
+              sx={cls.productCardImg}
               src={product?.image}
               alt={product?.title}
             />
           </Box>
-          <Box
-            sx={(theme) => ({
-              [theme.breakpoints.up('lg')]: {
-                width: '70%',
-              },
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '15px',
-              width: '100%',
-            })}
-          >
+          <Box sx={cls.productCardInfo}>
             <Box>
-              <Typography
-                sx={{
-                  textAlign: 'start ',
-                  color: 'grey',
-                  padding: '0',
-                  margin: '0',
-                  fontSize: ' 0.8rem',
-                }}
-              >
-                Title
-              </Typography>
-              <Typography
-                sx={{
-                  color: 'primary.dark',
-                  textAlign: 'start ',
-                  fontSize: '1.4rem',
-                }}
-              >
-                {product.title}
-              </Typography>
+              <Typography sx={cls.productCardSub}>Title</Typography>
+              <Typography sx={cls.productCardText}>{product.title}</Typography>
             </Box>
             <Box sx={{ display: 'flex', gap: '20px' }}>
               <Box>
-                <Typography
-                  sx={{
-                    textAlign: 'start ',
-                    color: 'grey',
-                    padding: '0',
-                    margin: '0',
-                    fontSize: ' 0.8rem',
-                  }}
-                >
-                  Price
-                </Typography>
-                <Typography
-                  sx={{
-                    color: 'primary.dark',
-                    textAlign: 'start',
-                    fontSize: '1.4rem',
-                  }}
-                >
+                <Typography sx={cls.productCardSub}>Price</Typography>
+                <Typography sx={cls.productCardText}>
                   {product.price} $
                 </Typography>
               </Box>
               <Box>
-                <Typography
-                  sx={{
-                    textAlign: 'start ',
-                    color: 'grey',
-                    padding: '0',
-                    margin: '0',
-                    fontSize: ' 0.8rem',
-                  }}
-                >
-                  Category
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: 'primary.dark',
-                    textAlign: 'start ',
-                    fontSize: '1.4rem',
-                  }}
-                >
+                <Typography sx={cls.productCardSub}>Category</Typography>
+                <Typography variant="body1" sx={cls.productCardText}>
                   {capFirstLetter(product.category)}
                 </Typography>
               </Box>
             </Box>
             <Box>
               <Typography
-                sx={{
-                  textAlign: 'start ',
-                  color: 'grey',
-                  padding: '0',
-                  margin: '0',
-                  fontSize: ' 0.8rem',
-                }}
+                sx={cls.productCardSub}
               >
                 Description
               </Typography>
@@ -166,25 +69,8 @@ export const ProductCard = ({
             </Box>
 
             <Box>
-              <Typography
-                sx={{
-                  textAlign: 'start ',
-                  color: 'grey',
-                  padding: '0',
-                  margin: '0',
-                  fontSize: ' 0.8rem',
-                }}
-              >
-                Rating
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  color: 'primary.dark',
-                  textAlign: 'start ',
-                  fontSize: '1.4rem',
-                }}
-              >
+              <Typography sx={cls.productCardSub}>Rating</Typography>
+              <Typography variant="body1" sx={cls.productCardText}>
                 {product.rating?.rate}
               </Typography>
             </Box>

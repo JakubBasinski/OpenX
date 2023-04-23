@@ -30,7 +30,6 @@ export default class CustomHashTable {
   get(key) {
     const index = this.hash(key);
     const bucket = this.table[index];
-
     if (bucket) {
       const sameKeyItem = bucket.find((item) => item[0] === key);
       if (sameKeyItem) {

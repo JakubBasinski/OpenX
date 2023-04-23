@@ -2,6 +2,7 @@ import React from 'react';
 import { capFirstLetter } from '../../../utils/functions';
 import { Box, Typography } from '@mui/material';
 import { CloseCardButton } from './CloseCardButton';
+import * as cls from './sytlesComponentsSx';
 
 export const UserCard = ({
   user,
@@ -10,171 +11,80 @@ export const UserCard = ({
   handleShowList,
 }) => {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        width: '300px',
-        padding: '30px ',
-        backdropFilter: blur('2px'),
-        marginTop: '30px',
-        gap: '15px',
-        border: '1px solid',
-        borderRadius: '5px',
-        color: 'primary.dark',
-      }}
-    >
+    <Box sx={cls.userCardRoot}>
       {user ? (
         <>
           <Box>
-            {(!showButtom && isSmallScreen) && (
-              <Box
-                sx={{
-                  width: '100%',
-                  display: 'flex',
-                  justifyContent: 'flex-end',
-                }}
-              >
+            {!showButtom && isSmallScreen && (
+              <Box sx={cls.buttonWrapper}>
                 <CloseCardButton handleShowList={handleShowList} />
               </Box>
             )}
+            <Typography sx={cls.productCardSub}>Name</Typography>
             <Typography
-              sx={{
-                textAlign: 'start ',
-                color: 'grey',
-                padding: '0',
-                margin: '0',
-                fontSize: ' 0.8rem',
-              }}
-            >
-              Name
-            </Typography>
-            <Typography
-              sx={{
-                color: 'primary.dark',
-                textAlign: 'start ',
-                fontSize: '1.4rem',
-              }}
+              sx={cls.productCardText}
             >
               {capFirstLetter(user.name.firstname)}{' '}
               {capFirstLetter(user.name.lastname)}
             </Typography>
           </Box>
           <Box>
+            <Typography sx={cls.productCardSub}>Email</Typography>
             <Typography
-              sx={{
-                textAlign: 'start ',
-                color: 'grey',
-                padding: '0',
-                margin: '0',
-                fontSize: ' 0.8rem',
-              }}
-            >
-              Email
-            </Typography>
-            <Typography
-              sx={{
-                color: 'primary.dark',
-                textAlign: 'start ',
-                fontSize: '1.4rem',
-              }}
+               sx={cls.productCardText}
             >
               {user.email}
             </Typography>
           </Box>
           <Box>
             <Typography
-              sx={{
-                textAlign: 'start ',
-                color: 'grey',
-                padding: '0',
-                margin: '0',
-                fontSize: ' 0.8rem',
-              }}
+              sx={cls.productCardSub}
             >
               Phone
             </Typography>
             <Typography
-              sx={{
-                color: 'primary.dark',
-                textAlign: 'start ',
-                fontSize: '1.4rem',
-              }}
+              sx={cls.productCardText}
             >
               {user.phone}
             </Typography>
           </Box>
           <Box>
             <Typography
-              sx={{
-                textAlign: 'start ',
-                color: 'grey',
-                padding: '0',
-                margin: '0',
-                fontSize: ' 0.8rem',
-              }}
+              sx={cls.productCardSub}
             >
               Address
             </Typography>
             <Typography
-              sx={{
-                color: 'primary.dark',
-                textAlign: 'start ',
-                fontSize: '1.4rem',
-              }}
+              sx={cls.productCardText}
             >
               {capFirstLetter(user.address.street)} {user.address.number}
             </Typography>
           </Box>
           <Box>
             <Typography
-              sx={{
-                textAlign: 'start ',
-                color: 'grey',
-                padding: '0',
-                margin: '0',
-                fontSize: ' 0.8rem',
-              }}
+             sx={cls.productCardSub}
             >
               City
             </Typography>
             <Typography
-              sx={{
-                color: 'primary.dark',
-                textAlign: 'start ',
-                fontSize: '1.4rem',
-              }}
+              sx={cls.productCardText}
             >
               {capFirstLetter(user.address.city)}, {user.address.zipcode}
             </Typography>
           </Box>
           <Box>
             <Typography
-              sx={{
-                textAlign: 'start ',
-                color: 'grey',
-                padding: '0',
-                margin: '0',
-                fontSize: ' 0.8rem',
-              }}
+             sx={cls.productCardSub}
             >
               Geolocation
             </Typography>
             <Typography
-              sx={{
-                color: 'primary.dark',
-                textAlign: 'start ',
-                fontSize: '1.4rem',
-              }}
+               sx={cls.productCardText}
             >
               {user.address.geolocation.lat}
             </Typography>
             <Typography
-              sx={{
-                color: 'primary.dark',
-                textAlign: 'start',
-                fontSize: '1.4rem',
-              }}
+              sx={cls.productCardText}
             >
               {user.address.geolocation.long}
             </Typography>
