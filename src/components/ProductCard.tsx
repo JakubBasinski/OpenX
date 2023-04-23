@@ -5,27 +5,56 @@ import { Box, Typography } from '@mui/material';
 export const ProductCard = ({ product }) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
+        [theme.breakpoints.down('sm')]: {
+          padding: '0px',
+        },
+        [theme.breakpoints.down('lg')]: {
+          padding: '30px',
+          flexDirection: 'column',
+        },
+        flexDirection: 'row',
         display: 'flex',
-        width: '90%',
-        padding: '50px ',
+        width: '95%',
+        padding: '30px ',
         border: '1px solid',
         borderColor: 'primary.dark',
         gap: '50px',
         borderRadius: '5px',
         marginTop: '30px',
-      }}
+      })}
     >
       {product ? (
         <>
           <Box
-            component="img"
-            sx={{ width: '400px', margin: 'auto' }}
-            src={product?.image}
-            alt={product?.title}
-          />
-
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Box
+              component="img"
+              sx={{
+                maxWidth: '300px',
+                maxHeight: '400px',
+                // margin: 'auto',
+              }}
+              src={product?.image}
+              alt={product?.title}
+            />
+          </Box>
+          <Box
+            sx={(theme) => ({
+              [theme.breakpoints.up('lg')]: {
+                width: '70%',
+              },
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '15px',
+              width: '100%',
+            })}
+          >
             <Box>
               <Typography
                 sx={{

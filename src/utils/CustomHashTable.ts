@@ -39,23 +39,4 @@ export default class CustomHashTable {
     }
     return undefined;
   }
-
-  remove(key) {
-    const index = this.hash(key);
-    const bucket = this.table[index];
-    if (bucket) {
-      const sameKeyItem = bucket.find((item) => item[0] === key);
-      if (sameKeyItem) {
-        bucket.splice(bucket.indexOf(sameKeyItem), 1);
-      }
-    }
-  }
-
-  display() {
-    for (let i = 0; i < this.table.length; i++) {
-      if (this.table[i]) {
-        console.log(i, this.table[i]);
-      }
-    }
-  }
 }

@@ -49,7 +49,6 @@ export const Distance = () => {
     setSelectedUsers((prev) => {
       const updatedState = [...prev];
       updatedState[0] = newSelectedUser;
-      console.log(updatedState);
       return updatedState;
     });
   };
@@ -73,8 +72,6 @@ export const Distance = () => {
     setSelectedUsers((prev) => {
       const updatedState = [...prev];
       updatedState[1] = newSelectedUser;
-
-      console.log(updatedState);
       return updatedState;
     });
   };

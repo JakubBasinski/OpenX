@@ -98,6 +98,7 @@ export const Data = () => {
           height: '85vh',
           display: 'flex',
         }}
+        
       >
         <Grid
           item
@@ -107,7 +108,9 @@ export const Data = () => {
             justifyContent: 'center',
             height: '100%',
           }}
-          xs={3}
+          xs={6}
+          md={6}
+          lg={4}
         >
           {dataType === 'Users' && (
             <UserList
@@ -140,7 +143,9 @@ export const Data = () => {
             justifyContent: 'start',
           }}
           item
-          xs={9}
+          xs={6}
+          md={6}
+          lg={8}
         >
           {dataType === 'Users' && <UserCard user={activeUser} />}
           {dataType === 'Products' && <ProductCard product={activeProduct} />}

@@ -1,11 +1,15 @@
 import './App.scss';
+import React, { useState, useEffect } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { Menu } from './layouts/Menu';
 import { AppRoutes } from './AppRoutes';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { BackToMenuArrow } from './components/BackToMenuArrow';
 
-const theme = createTheme({
+const customTheme = createTheme({
   palette: {
     primary: {
       main: 'rgb(246,232,199)',
@@ -20,16 +24,39 @@ const theme = createTheme({
 });
 
 function App() {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
+  console.log(isSmallScreen);
+
+  console.log(theme.breakpoints);
+  const [menuVisible, setMenuVisible] = useState(true);
+
+  useEffect(() => {
+    if (!isSmallScreen) {
+      setMenuVisible(true);
+    }
+  }, [isSmallScreen]);
+
+  const handleMenuItemClick = () => {
+    if (isSmallScreen) {
+      console.log('here');
+      setMenuVisible(false);
+    } else {
+      setMenuVisible(true);
+    }
+  };
+
   return (
-    <ThemeProvider theme={theme}>
-      <Grid
-        container
-        sx={{ height: '100vh', width: '100%', overflow: 'hidden' }}
-      >
-        <Grid sx={{ height: '100%' }} item xs={4} md={3} lg={2}>
-          <Menu />
-        </Grid>
-        <Grid item xs={8} md={9} lg={10} sx={{ overflow: 'scroll' }}>
+    <ThemeProvider theme={customTheme}>
+      <BackToMenuArrow />
+      <Grid container sx={{ height: '100vh', width: '100%', display: 'flex' }}>
+        {menuVisible && (
+          <Grid item sx={{ height: '100%' }} item xs={12} md={3} lg={2}>
+            <Menu handleMenuItemClick={handleMenuItemClick} />
+          </Grid>
+        )}
+
+        <Grid item xs={12} md={9} lg={10} sx={{}}>
           <AppRoutes />
         </Grid>
         <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
